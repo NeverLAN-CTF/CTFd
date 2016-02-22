@@ -73,6 +73,10 @@ input[type="checkbox"] { margin: 0px !important; position: relative; top: 5px; }
                             <input type="email" class="form-control" name="email" id="email" placeholder="Enter new email">
                         </div>
                         <div class="form-group">
+                            <label for="schoolCode">School Code</label>
+                            <input type="text" class="form-control" name="schoolCode" id="schoolCode" />
+                        </div>
+                        <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" name="password" id="password" />
                         </div>
@@ -110,7 +114,7 @@ input[type="checkbox"] { margin: 0px !important; position: relative; top: 5px; }
                 </td>
                 <td class="text-center"><b>Affiliation</b>
                 </td>
-                <td class="text-center"><b>Country</b>
+                <td class="text-center"><b>School Code</b>
                 </td>
                 <td class="text-center"><b>Admin</b>
                 </td>
@@ -129,7 +133,7 @@ input[type="checkbox"] { margin: 0px !important; position: relative; top: 5px; }
                 </td>
                 <td class="team-affiliation"><span>{% if team.affiliation %}{{ team.affiliation | truncate(20) }}{% endif %}</span>
                 </td>
-                <td class="team-country"><span>{% if team.country %}{{ team.country }}{% endif %}</span>
+                <td class="team-schoolCode"><span>{% if team.schoolCode %}{{ team.schoolCode }}{% endif %}</span>
                 </td>
                 <td class="team-admin">
                     <div class="center-block checkbox text-center">

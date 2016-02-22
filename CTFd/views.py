@@ -43,8 +43,9 @@ def setup():
             ## Admin user
             name = request.form['name']
             email = request.form['email']
+            schoolCode = '12345'
             password = request.form['password']
-            admin = Teams(name, email, password)
+            admin = Teams(name, email, schoolCode, password)
             admin.admin = True
             admin.banned = True
 
@@ -156,6 +157,7 @@ def profile():
 
             name = request.form.get('name')
             email = request.form.get('email')
+            schoolCode = request.form.get('schoolCode')
             website = request.form.get('website')
             affiliation = request.form.get('affiliation')
             country = request.form.get('country')
@@ -184,7 +186,7 @@ def profile():
                 errors.append("That doesn't look like a valid URL")
 
             if len(errors) > 0:
-                return render_template('profile.html', name=name, email=email, website=website,
+                return render_template('profile.html', name=name, email=email, schoolCode=schoolCode, website=website,
                                        affiliation=affiliation, country=country, errors=errors)
             else:
                 team = Teams.query.filter_by(id=session['id']).first()
@@ -198,6 +200,7 @@ def profile():
 
                 if 'password' in request.form.keys() and not len(request.form['password']) == 0:
                     team.password = bcrypt_sha256.encrypt(request.form.get('password'))
+                team.schoolCode = schoolCode
                 team.website = website
                 team.affiliation = affiliation
                 team.country = country
@@ -208,12 +211,13 @@ def profile():
             user = Teams.query.filter_by(id=session['id']).first()
             name = user.name
             email = user.email
+            schoolCode = user.schoolCode
             website = user.website
             affiliation = user.affiliation
             country = user.country
             prevent_name_change = get_config('prevent_name_change')
             confirm_email = get_config('verify_emails') and not user.verified
-            return render_template('profile.html', name=name, email=email, website=website, affiliation=affiliation,
+            return render_template('profile.html', name=name, email=email, schoolCode=schoolCode, website=website, affiliation=affiliation,
                                    country=country, prevent_name_change=prevent_name_change, confirm_email=confirm_email)
     else:
         return redirect(url_for('auth.login'))
