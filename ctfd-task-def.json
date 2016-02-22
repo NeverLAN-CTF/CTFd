@@ -1,0 +1,19 @@
+{
+    "family": "ctfd-app",
+    "containerDefinitions": [
+        {
+            "environment": [],
+            "name": "ctfd",
+            "image": "neverlanctf/ctfd",
+            "cpu": 1,
+            "memory": 250,
+            "portMappings": [
+                {
+                    "containerPort": 8000,
+                    "hostPort": 8000
+                }
+            ],
+            "essential": true
+        }
+    ]
+}
