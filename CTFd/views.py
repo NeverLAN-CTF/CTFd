@@ -53,11 +53,11 @@ def setup():
             page = Pages('index', """<div class="container main-container">
     <img class="logo" src="/static/img/logo.png" />
     <h3 class="text-center">
-        Welcome to a cool CTF framework written by <a href="https://github.com/ColdHeat">Kevin Chung</a> of <a href="https://github.com/isislab">@isislab</a>
+        Welcome to the <span class="main-name">NeverLAN CTF</span>
     </h3>
 
     <h4 class="text-center">
-        <a href="/admin">Click here</a> to login and setup your CTF
+        <a href="/login">Click here</a> to login or <a href="/register">here</a> to register
     </h4>
 </div>""")
 
