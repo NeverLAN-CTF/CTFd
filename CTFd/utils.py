@@ -1,6 +1,6 @@
 from CTFd.models import db, WrongKeys, Pages, Config, Tracking, Teams
 
-from six.moves.urllib.parse import urlparse, urljoin 
+from six.moves.urllib.parse import urlparse, urljoin
 from functools import wraps
 from flask import current_app as app, g, request, redirect, url_for, session, render_template, abort
 from flask.ext.mail import Message
@@ -128,7 +128,7 @@ def init_utils(app):
 
 def ctf_name():
     name = get_config('ctf_name')
-    return name if name else 'CTFd'
+    return name if name else 'NeverLAN CTF'
 
 
 def pages():
@@ -204,11 +204,11 @@ def ctftime():
             # Within the two time bounds
             return True
 
-    if start < time.time() and end == 0: 
+    if start < time.time() and end == 0:
         # CTF starts on a date but never ends
         return True
 
-    if start == 0 and time.time() < end: 
+    if start == 0 and time.time() < end:
         # CTF started but ends at a date
         return True
 
@@ -320,7 +320,7 @@ def sendmail(addr, text):
         r = requests.post(
             mg_base_url + '/messages',
             auth=("api", mg_api_key),
-            data={"from": "{} Admin <{}>".format(ctf_name, 'noreply@ctfd.io'),
+            data={"from": "{} Admin <{}>".format(ctf_name, 'noreply@neverlanctf.com'),
                   "to": [addr],
                   "subject": "Message from {0}".format(ctf_name),
                   "text": text})
@@ -345,7 +345,7 @@ def sendmail(addr, text):
         smtp = get_smtp(**data)
         msg = email.mime.text.MIMEText(text)
         msg['Subject'] = "Message from {0}".format(get_config('ctf_name'))
-        msg['From'] = 'noreply@ctfd.io'
+        msg['From'] = 'noreply@neverlanctf.com'
         msg['To'] = addr
 
         smtp.sendmail(msg['From'], [msg['To']], msg.as_string())

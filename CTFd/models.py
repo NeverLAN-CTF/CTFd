@@ -41,7 +41,7 @@ class Challenges(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
     description = db.Column(db.Text)
-    value = db.Column(db.Integer) 
+    value = db.Column(db.Integer)
     category = db.Column(db.String(80))
     flags = db.Column(db.Text)
     hidden = db.Column(db.Boolean)
@@ -102,6 +102,7 @@ class Teams(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), unique=True)
     email = db.Column(db.String(128), unique=True)
+    schoolCode = db.Column(db.String(128))
     password = db.Column(db.String(128))
     website = db.Column(db.String(128))
     affiliation = db.Column(db.String(128))
@@ -111,9 +112,10 @@ class Teams(db.Model):
     verified = db.Column(db.Boolean)
     admin = db.Column(db.Boolean)
 
-    def __init__(self, name, email, password):
+    def __init__(self, name, email, schoolCode, password):
         self.name = name
         self.email = email
+        self.schoolCode = schoolCode
         self.password = bcrypt_sha256.encrypt(str(password))
 
     def __repr__(self):
@@ -150,7 +152,7 @@ class Solves(db.Model):
     date = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     team = db.relationship('Teams', foreign_keys="Solves.teamid", lazy='joined')
     chal = db.relationship('Challenges', foreign_keys="Solves.chalid", lazy='joined')
-    # value = db.Column(db.Integer) 
+    # value = db.Column(db.Integer)
 
     def __init__(self, chalid, teamid, ip, flag):
         self.ip = ip2long(ip)

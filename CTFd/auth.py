@@ -65,7 +65,7 @@ def reset_password(data=None):
         s = TimedSerializer(app.config['SECRET_KEY'])
         token = s.dumps(team.name)
         text = """
-Did you initiate a password reset? 
+Did you initiate a password reset?
 
 {0}/reset_password/{1}
 
@@ -85,6 +85,7 @@ def register():
         errors = []
         name = request.form['name']
         email = request.form['email']
+        schoolCode = request.form['schoolCode']
         password = request.form['password']
 
         name_len = len(name) == 0
@@ -108,10 +109,10 @@ def register():
             errors.append('Pick a longer team name')
 
         if len(errors) > 0:
-            return render_template('register.html', errors=errors, name=request.form['name'], email=request.form['email'], password=request.form['password'])
+            return render_template('register.html', errors=errors, name=request.form['name'], email=request.form['email'], schoolCode=request.form['schoolCode'], password=request.form['password'])
         else:
             with app.app_context():
-                team = Teams(name, email.lower(), password)
+                team = Teams(name, email.lower(), schoolCode, password)
                 db.session.add(team)
                 db.session.commit()
                 db.session.flush()

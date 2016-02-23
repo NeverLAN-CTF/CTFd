@@ -180,6 +180,10 @@ extensions = [
     '.iso', '.toa', '.vcd', '.gam', '.nes', '.rom', '.sav', '.msi',
 ]
 
+schoolCodes = [
+    '','11111','22222','33333','44444','55555','66666','77777','88888','99999',
+    '00000',
+]
 
 def gen_sentence():
     return ' '.join(random.sample(lorems, 50))
@@ -208,6 +212,8 @@ def gen_word():
 def gen_file():
     return gen_word() + random.choice(extensions)
 
+def gen_code():
+    return random.choice(schoolCodes)
 
 def random_date(start, end):
     return start + datetime.timedelta(
@@ -246,7 +252,7 @@ if __name__ == '__main__':
             name = gen_name()
             if name not in used:
                 used.append(name)
-                team = Teams(name, name.lower() + gen_email(), 'password')
+                team = Teams(name, name.lower() + gen_email(), gen_code(), 'password')
                 team.verified = True
                 db.session.add(team)
                 count += 1
