@@ -10,3 +10,4 @@ itsdangerous
 requests
 PyMySQL
 gunicorn
+eventlet

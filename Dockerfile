@@ -11,5 +11,5 @@ RUN pip install -r requirements.txt
 COPY . /opt/CTFd
 
 ENTRYPOINT ["/opt/CTFd/entrypoint.sh"]
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "-w", "4", "--error-logfile", "/opt/CTFd/CTFd/logs/gunicorn_error.log", "--access-logfile", "/opt/CTFd/CTFd/logs/gunicorn_access.log", "CTFd:create_app()"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "-k", "eventlet", "-w", "4", "--error-logfile", "/opt/CTFd/CTFd/logs/gunicorn_error.log", "--access-logfile", "/opt/CTFd/CTFd/logs/gunicorn_access.log", "CTFd:create_app()"]
 EXPOSE 8000
