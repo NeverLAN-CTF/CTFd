@@ -10,6 +10,13 @@ h1, h2 {
     letter-spacing: 2px;
 }
 
+@import url(https://fonts.googleapis.com/css?family=VT323);
+
+@font-face {
+  font-family: 8-bit;
+  src: url('../fonts/VCR_OSD_MONO_1.001.ttf');
+}
+
 td {
     padding: 15px !important;
 }
@@ -34,21 +41,26 @@ a {
     font-size: 24px;
     letter-spacing: -0.04rem;
     line-height: 15px;
-    color: #FFF;
+    color: #0F0;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-    color: #FFF !important;
+    color: #fff !important;
+}
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover{
+    color:#0f0 !important;
+    opacity:.8 !important;
 }
 
 .navbar li > a {
-    opacity: 0.5;
+    font-family:'VT323','Lato', sans-serif;
+    opacity: 0.7;
     transition: opacity 0.08s ease-in 0s;
     cursor: pointer;
 }
 
 .navbar li > a:hover {
-    opacity: 0.8;
+    opacity: 1;
 }
 
 .align-text-to-button {
@@ -200,13 +212,14 @@ table{
 }
 
 .navbar-inverse {
-    background: none repeat scroll 0% 0% #545454;
-    border: medium none;
+    background: none repeat scroll 0% 0% #191e22;
+    border:none;
+    border-bottom:2px rgba(0,255,0,1) solid;
     margin-bottom: 0px;
 }
 
 .jumbotron {
-    background-color: #545454;
+    background-color: #191e22;
     color: #FFF;
     padding: 0px 0px 25px;
 }
